@@ -53,9 +53,9 @@
             
             <button type="submit">Generate</button>
             
-           <% if (locals.SHORTLINK) { %>
+       <% if (locals.SHORTLINK) { %>
   <p>Your custom URL:
-    <a href=https://cust_url.up.railway.app<%= SHORTLINK %></a>
+    <a href="<%= SHORTLINK %>" target="_blank"><%= SHORTLINK %></a>
   </p>
 <% } %>
         </form>
