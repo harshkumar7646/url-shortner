@@ -25,10 +25,11 @@ const insertdata=async (req,res)=>{
         original_url:body.original_url
     })
     
-    res.render("home",{GENurl:body.cust_url,
-        SHORTLINK: `${process.env.BASE_URL || "https://localhost:8000"}/${body.cust_url}`
-    })
-    }
+    const baseUrl = process.env.BASE_URL || "";
+res.render("home", {
+  GENurl: body.cust_url,
+  SHORTLINK: ${baseUrl}/${body.cust_url}
+});
     catch(error){
         res.json({"status":"error in post"}).end();
         console.log(error);
