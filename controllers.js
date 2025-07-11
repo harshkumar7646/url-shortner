@@ -29,7 +29,7 @@ const insertdata = async (req, res) => {
         const baseUrl = process.env.BASE_URL || "";
         res.render("home", {
             GENurl: body.cust_url,
-            SHORTLINK: `${baseUrl}/api/users/${body.cust_url}`
+            SHORTLINK: `${baseUrl}/${body.cust_url}`
         });
     }
     catch (error) {
@@ -50,4 +50,4 @@ const getHistory = async (req, res) => {
     }
 }
 
-module.exports = { getOriginalUrl, insertdata, getHistory };
+module.exports = { getOriginalUrl, insertdata, getHistory };
