@@ -9,5 +9,3 @@ async function connectDB(){
 }
 
 module.exports={connectDB};
-//jB2cXi8qreRQTQSI
-//sirihey0047
