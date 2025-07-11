@@ -26,7 +26,7 @@ const insertdata=async (req,res)=>{
     })
     
     res.render("home",{GENurl:body.cust_url,
-        SHORTLINK: `${process.env.BASE_URL || "http://localhost:8000"}/${body.cust_url}`
+        SHORTLINK: `${process.env.BASE_URL ||}/${body.cust_url}`
     })
     }
     catch(error){
