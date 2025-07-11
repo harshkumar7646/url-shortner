@@ -1,11 +1,11 @@
-require("dotenv").config(); 
+
 const {connectDB}=require("./connection.js");
 const url=require("./model.js")
 const express=require("express");
 const path=require("path");
 const app=express();
 const router=require("./routes.js");
-const port=process.env.PORT;
+const port=8000;
 app.listen(port,()=>{
     console.log(`server.listen at ${port}`)
 })
