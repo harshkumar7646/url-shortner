@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom URL Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .history {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Custom URL Generator</h1>
+        <form method="POST" action="/api/users/create">
+            <label for="original_url">Original URL:</label>
+            <input type="text" name="original_url" id="original_url" placeholder="http://example.com" required>
+            
+            <label for="cust_url">Custom Name:</label>
+            <input type="text" name="cust_url" id="cust_url" placeholder="custom-name" required>
+            
+            <button type="submit">Generate</button>
+            
+            <% if (locals.GENurl) { %>
+                <p>Your custom URL: <a href="http://localhost:8000/api/users/<%= GENurl %>" target="_blank">http://localhost:8000/api/users/<%= GENurl %></a></p>
+            <% } %>
+        </form>
+    </div>
+    
+    <div class="container history">
+        <h2>History</h2>
+        <form method="GET" action="/api/users/history">
+            <button type="submit">View History</button>
+        </form>
+        <ul>
+            <% if (locals.response) { %>
+                <% response.forEach(element => { %>
+                    <li><a href="<%= element.original_url %>" target="_blank"><%= element.original_url %></a> ➝ <strong><%= element.cust_url %></strong></li>
+                <% }) %>
+            <% } %>
+        </ul>
+    </div>
+</body>
+</html>
