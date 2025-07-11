@@ -8,33 +8,35 @@ const getOriginalUrl=async (req,res)=>{
         const rec=await url.findOne({cust_url:cust_url});
         console.log(rec);
         if (!rec){
-            res.status(404).json({"message":"not found"});
+            return res.status(404).json({"message":"not found"});
         }
-        res.redirect(rec.original_url);
+        return res.redirect(rec.original_url);
     }
     catch(error){
-        res.status(400).end();
+        return res.status(400).end();
     }
-     
 }
+
 const insertdata=async (req,res)=>{
     try{
         const body=req.body;
         await url.create({
-        cust_url:body.cust_url,
-        original_url:body.original_url
-    })
-    
-    const baseUrl = process.env.BASE_URL || "";
-res.render("home", {
-  GENurl: body.cust_url,
-  SHORTLINK: ${baseUrl}/${body.cust_url}
-});
+            cust_url:body.cust_url,
+            original_url:body.original_url
+        })
+        
+        const baseUrl = process.env.BASE_URL || "";
+        res.render("home", {
+            GENurl: body.cust_url,
+            SHORTLINK: ${baseUrl}/${body.cust_url}
+        });
+    }
     catch(error){
         res.json({"status":"error in post"}).end();
         console.log(error);
     }
 }
+
 const getHistory=async (req,res)=>{
     try{
         const ress=await url.find({});
@@ -46,4 +48,5 @@ const getHistory=async (req,res)=>{
         res.status(400).json({"message":"error occured in history"})
     }
 }
+
 module.exports={getOriginalUrl,insertdata,getHistory};
