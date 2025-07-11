@@ -13,4 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set("views",path.resolve("./views"));
 app.use("/api/users",router);
+app.get("/", (req, res) => {
+    res.render("home");
+});
 connectDB();
