@@ -53,9 +53,11 @@
             
             <button type="submit">Generate</button>
             
-            <% if (locals.GENurl) { %>
-                <p>Your custom URL: <a href="http://localhost:8000/api/users/<%= GENurl %>" target="_blank">http://localhost:8000/api/users/<%= GENurl %></a></p>
-            <% } %>
+           <% if (locals.SHORTLINK) { %>
+  <p>Your custom URL:
+    <a href="<%= SHORTLINK %>" target="_blank"><%= SHORTLINK %></a>
+  </p>
+<% } %>
         </form>
     </div>
     
