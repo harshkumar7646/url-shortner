@@ -19,13 +19,12 @@ const getOriginalUrl=async (req,res)=>{
 }
 const insertdata=async (req,res)=>{
     try{
-        // const { custname, oriurl } = req.params;
         const body=req.body;
         await url.create({
         cust_url:body.cust_url,
         original_url:body.original_url
     })
-    // res.json({"your custom  URl":`http://localhost:8000/api/users/${body.cust_url}`}).status(201);
+    
     res.render("home",{GENurl:body.cust_url,
         SHORTLINK: `${process.env.BASE_URL || "http://localhost:8000"}/${body.cust_url}`
     })
